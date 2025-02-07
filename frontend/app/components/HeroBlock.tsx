@@ -40,8 +40,8 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
           alt={title}
           width={windowSize.width}
           height={windowSize.height}
-          style={{ objectFit: "cover" }}
-          priority // Add priority for above the fold image
+          style={{ objectFit: "cover", width: windowSize.width, height: windowSize.height }}
+          priority
         />
       )}
       <div

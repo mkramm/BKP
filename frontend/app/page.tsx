@@ -1,10 +1,10 @@
-import client from '@/sanity/sanityClient';
-import imageUrlBuilder from '@sanity/image-url';
-import { Sitemap } from '@/app/types/sitemap';
-import HeroBlock from './components/HeroBlock';
-import ArticleBlock from './components/ArticleBlock';
-import ContactBlock from './components/ContactBlock';
-import Navigation from './components/Navigation';
+import client from "@/sanity/sanityClient";
+import imageUrlBuilder from "@sanity/image-url";
+import { Sitemap } from "@/app/types/sitemap";
+import HeroBlock from "./components/HeroBlock";
+import ArticleBlock from "./components/ArticleBlock";
+import ContactBlock from "./components/ContactBlock";
+import Navigation from "./components/Navigation";
 
 const builder = imageUrlBuilder(client);
 
@@ -13,7 +13,7 @@ function urlFor(source: any) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug || 'home';
+  const slug = params.slug || "home";
 
   const query = `*[_type == "page" && slug.current == $slug][0]`;
   const page = await client.fetch(query, { slug });
@@ -23,16 +23,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   const sitemapQuery = `*[_type == "sitemap"] {
+    _id,
     title,
     page-> {
-      _key,
+      _id,
       _type,
       slug {
         current
       }
     },
     children[]-> {
-      _key,
+      _id,
       title,
       page-> {
         _type,
@@ -41,7 +42,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         }
       },
       children[]-> {
-        _key,
+        _id,
         title,
         page-> {
           _type,
@@ -50,7 +51,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           }
         },
         children[]-> {
-          _key,
+          _id,
           title,
           page-> {
             _type,
@@ -69,12 +70,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Navigation sitemapData={sitemapData} />
       {page.blocks.map((contentBlock: any) => {
         switch (contentBlock._type) {
-          case 'hero':
-            return <HeroBlock key={contentBlock._key} {...contentBlock} darkMode={page.darkMode} />;
-          case 'article':
-            return <ArticleBlock key={contentBlock._key} {...contentBlock} />;
-          case 'contact':
-            return <ContactBlock key={contentBlock._key} {...contentBlock} />;
+          case "hero":
+            return (
+              <HeroBlock
+                key={contentBlock._id}
+                {...contentBlock}
+                darkMode={page.darkMode}
+              />
+            );
+          case "article":
+            return <ArticleBlock key={contentBlock._id} {...contentBlock} />;
+          case "contact":
+            return <ContactBlock key={contentBlock._id} {...contentBlock} />;
           default:
             return null;
         }
@@ -88,6 +95,6 @@ export async function generateStaticParams() {
   const pages = await client.fetch(query);
 
   return pages.map((page: any) => ({
-    slug: page.slug?.current || 'home',
+    slug: page.slug?.current || "home",
   }));
 }

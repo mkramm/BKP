@@ -8,11 +8,11 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ sitemapData }) => {
   const renderNavigation = (items: Sitemap[]) => {
-    console.log(items);
+
     return (
       <ul>
         {items.map((item) => (
-          <li key={item._key}>
+          <li key={item._id}>
             {item.page && (
               <Link href={`/${item.page.slug.current}`}>{item.title}</Link>
             )}
