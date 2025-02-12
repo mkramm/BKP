@@ -16,42 +16,11 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   image,
   darkMode,
 }) => {
-  const overlayClass = darkMode ? "bg-black/50" : "bg-white/50";
-  const textClass = darkMode ? "text-white" : "text-black";
-
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-      {windowSize.width > 0 && windowSize.height > 0 && (
-        <Image
-          src={urlFor(image).url()}
-          alt={title}
-          width={windowSize.width}
-          height={windowSize.height}
-          style={{ objectFit: "cover", width: windowSize.width, height: windowSize.height }}
-          priority
-        />
-      )}
-      <div
-        className={`absolute inset-0 flex flex-col items-center justify-center text-center ${overlayClass}`}
-      >
-        <h1 className={`text-5xl font-bold ${textClass}`}>{title}</h1>
-        <p className={`text-2xl mt-4 ${textClass}`}>{subtitle}</p>
-      </div>
+    <div>
+      <h1>Test</h1>
     </div>
-  );
+  )
 };
 
 export default HeroBlock;

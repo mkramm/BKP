@@ -16,5 +16,7 @@
     "url": "https://github.com/mkramm/BKP/issues"
   },
   "homepage": "https://github.com/mkramm/BKP#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+  }
 }

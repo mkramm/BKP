@@ -1,4 +1,3 @@
-// frontend/utils/sanityClient.ts
 import { createClient } from 'next-sanity'
 
 const client = createClient({
