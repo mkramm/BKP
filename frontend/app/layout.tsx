@@ -25,8 +25,9 @@ export default async function RootLayout({
   const sitemapQuery = `*[_type == "sitemap"] {
     title,
     page->,
-    icon
-  }`;
+    icon,
+    priority
+  } | order(priority asc)`;
 
   const sitemapData: Sitemap[] = await client.fetch(sitemapQuery);
 
