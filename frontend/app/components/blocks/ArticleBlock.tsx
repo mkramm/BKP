@@ -1,9 +1,10 @@
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 import React from 'react';
-import { PortableText, PortableTextComponents, PortableTextComponentProps, PortableTextMarkComponentProps } from '@portabletext/react';
+import {PortableTextBlock } from 'sanity'
 
 interface ArticleBlockProps {
   Headline: string;
-  content: any[];
+  content: PortableTextBlock[];
 }
 
 // Define the types for the custom components
@@ -19,21 +20,21 @@ const components: PortableTextComponents = {
     blockquote: ({ children }) => <blockquote className="border-l-4 pl-4 italic text-gray-600">{children}</blockquote>,
   },
   list: {
-    bullet: ({ children }: PortableTextComponentProps<any>) => {
+    bullet: ({ children }) => {
       console.log('Rendering bullet list');
       return <ul className="list-disc pl-5">{children}</ul>;
     },
-    number: ({ children }: PortableTextComponentProps<any>) => {
+    number: ({ children }) => {
       console.log('Rendering numbered list');
       return <ol className="list-decimal pl-5">{children}</ol>;
     },
   },
-  listItem: ({ children }: PortableTextComponentProps<any>) => {
+  listItem: ({ children }) => {
     console.log('Rendering list item');
     return <li className="mb-2">{children}</li>;
   },
   marks: { 
-    link: ({ value, children }: PortableTextMarkComponentProps) => (
+    link: ({ value, children }) => (
       <a href={value?.href} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
         {children}
       </a>

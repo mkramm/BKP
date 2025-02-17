@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { NavigationProps } from "./types";
 import { NavigationTitle } from "./NavigationTitle";
 import { NavigationItemList } from "./NavigationItemList";
