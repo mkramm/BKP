@@ -4,9 +4,11 @@ import { Mail, Phone, MapPin } from "lucide-react";
 export interface ContactBlockProps {
   email: string;
   phone: string;
+  address: string;
+  contactName: string;
 }
 
-export function ContactBlock({ email, phone }: ContactBlockProps) {
+export function ContactBlock({ email, phone, address, contactName }: ContactBlockProps) {
   return (
     <section className="py-20">
       <div className="container mx-auto px-8 max-w-[1400px]">
@@ -29,7 +31,11 @@ export function ContactBlock({ email, phone }: ContactBlockProps) {
             </div>
             <div className="flex items-center gap-4">
               <MapPin className="h-6 w-6 text-[#D40000]" />
-              <span className="text-lg text-gray-900">85049 Puch, Bayern</span>
+              <span className="text-lg text-gray-900">
+                {address.split(',').map((line, index) => (
+                  <span key={index}>{line.trim()}<br /></span>
+                ))}
+              </span>
             </div>
             <Button
               variant="default"
@@ -40,7 +46,7 @@ export function ContactBlock({ email, phone }: ContactBlockProps) {
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.6774567754307!2d11.5!3d48.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDMwJzAwLjAiTiAxMcKwMzAnMDAuMCJF!5e0!3m2!1sde!2sde!4v1635789456789!5m2!1sde!2sde"
+              src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${address}+(${contactName})&t=&z=16&ie=UTF8&iwloc=B&output=embed`}
               width="100%"
               height="100%"
               style={{ border: 0 }}
