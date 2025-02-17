@@ -30,12 +30,16 @@ type ContactBlockProps = {
 
 type BlockProps = HeroBlockProps | ArticleBlockProps | ContactBlockProps;
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
 export default async function DynamicPage({
   params,
-}: {
-  params: { slug: string }
-}) {
-  const currentSlug = await Promise.resolve(params.slug);
+  }: PageProps) {
+  const currentSlug = params.slug; // No need for Promise.resolve here
 
   const pageQuery = `*[_type == "page" && slug.current == $slug][0] {
     title,
@@ -52,7 +56,7 @@ export default async function DynamicPage({
       headline,
       content,
     }
-  }`
+  }`;
 
   const pageData = await client.fetch(pageQuery, { slug: currentSlug });
 
