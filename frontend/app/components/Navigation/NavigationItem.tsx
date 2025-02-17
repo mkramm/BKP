@@ -24,7 +24,7 @@ interface NavigationItemProps {
 export function NavigationItem({ item, isMobile, closeMenu, scrollData, mounted, getTextColor }: NavigationItemProps) {
 
     const icon = (item.icon ?? 'home') as IconType;
-    const IconComponent = iconMap[icon];
+    const IconComponent = iconMap[icon] || Home;
     const hasChildren = item.children && item.children.length > 0;
 
     const buttonStyles = isMobile

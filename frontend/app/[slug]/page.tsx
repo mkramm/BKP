@@ -34,8 +34,6 @@ export default async function DynamicPage({
     return <div>404 - Seite nicht gefunden</div>; // Fallback für 404
   }
 
-  console.log('Page Data:', JSON.stringify(pageData, null, 2));
-
   const renderBlock = (block: any) => {
     switch (block._type) {
       case 'hero':
