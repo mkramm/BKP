@@ -9,14 +9,14 @@ interface ArticleBlockProps {
 // Define the types for the custom components
 const components: PortableTextComponents = {
   block: {
-    h1: ({ children }: PortableTextComponentProps<any>) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
-    h2: ({ children }: PortableTextComponentProps<any>) => <h2 className="text-2xl font-bold mb-4">{children}</h2>,
-    h3: ({ children }: PortableTextComponentProps<any>) => <h3 className="text-xl font-bold mb-4">{children}</h3>,
-    h4: ({ children }: PortableTextComponentProps<any>) => <h4 className="text-lg font-bold mb-4">{children}</h4>,
-    h5: ({ children }: PortableTextComponentProps<any>) => <h5 className="text-base font-bold mb-4">{children}</h5>,
-    h6: ({ children }: PortableTextComponentProps<any>) => <h6 className="text-sm font-bold mb-4">{children}</h6>,
-    normal: ({ children }: PortableTextComponentProps<any>) => <p className="mb-4">{children}</p>,
-    blockquote: ({ children }: PortableTextComponentProps<any>) => <blockquote className="border-l-4 pl-4 italic text-gray-600">{children}</blockquote>,
+    h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl font-bold mb-4">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl font-bold mb-4">{children}</h3>,
+    h4: ({ children }) => <h4 className="text-lg font-bold mb-4">{children}</h4>,
+    h5: ({ children }) => <h5 className="text-base font-bold mb-4">{children}</h5>,
+    h6: ({ children }) => <h6 className="text-sm font-bold mb-4">{children}</h6>,
+    normal: ({ children }) => <p className="mb-4">{children}</p>,
+    blockquote: ({ children }) => <blockquote className="border-l-4 pl-4 italic text-gray-600">{children}</blockquote>,
   },
   list: {
     bullet: ({ children }: PortableTextComponentProps<any>) => {

@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { urlFor } from "@/app/utils/image";
+import { Image } from "sanity";
 
 interface HeroBlockProps {
   title: string;
   subtitle: string;
-  image: any; // Sanity Image type
+  image: Image;
 }
 
 export function HeroBlock({ title, subtitle, image }: HeroBlockProps) {

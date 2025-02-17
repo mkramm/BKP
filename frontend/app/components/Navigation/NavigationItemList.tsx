@@ -1,4 +1,4 @@
-import { Sitemap, IconType } from '@/app/types/sitemap';
+import { Sitemap } from '@/app/types/sitemap';
 import { NavigationItem } from './NavigationItem';
 
 
