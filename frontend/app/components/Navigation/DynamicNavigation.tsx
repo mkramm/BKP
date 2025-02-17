@@ -15,7 +15,6 @@ export default function DynamicNavigation({ sitemapData, siteTitle }: Navigation
         progress: 0,
         isScrolled: false
     });
-    const pathname = usePathname();
 
     useEffect(() => {
         setMounted(true);
