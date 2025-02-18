@@ -6,7 +6,6 @@ export interface Sitemap extends Document {
   _id: string;
   title: string;
   icon?: IconType;
-  url: string;
   page?: {
     _id: string;
     _type: 'page';

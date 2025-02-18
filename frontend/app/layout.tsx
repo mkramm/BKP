@@ -22,19 +22,33 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const sitemapQuery = `*[_type == "sitemap"] {
+  const sitemapQuery = `*[_type == "sitemap" && title == "root"] {
     title,
-    page->,
     icon,
-    priority
-  } | order(priority asc)`;
+    children[]-> {
+      title,
+      page->,
+      icon,
+      children[]-> {
+        title,
+        page->,
+        icon,
+        children[]-> {
+          title,
+          page->,
+          icon
+        }
+      }
+    }
+  }`;
 
   const sitemapData: Sitemap[] = await client.fetch(sitemapQuery);
+  const rootChildren = sitemapData.find(sitemap => sitemap.title === 'root')?.children || [];
 
   return (
     <html lang="en" className={`${inter.className} ${ebGaramond.variable}`}>
       <body className={inter.className}>
-        <Navigation sitemapData={sitemapData} siteTitle={siteTitle} />
+        <Navigation sitemapData={rootChildren} siteTitle={siteTitle} />
         {children}
       </body>
     </html>
