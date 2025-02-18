@@ -31,15 +31,13 @@ type ContactBlockProps = {
 type BlockProps = HeroBlockProps | ArticleBlockProps | ContactBlockProps;
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function DynamicPage({
-  params,
-  }: PageProps) {
-  const currentSlug = params.slug; // No need for Promise.resolve here
+export default async function DynamicPage({ params }: PageProps) {
+  const { slug } = await params; // Warten auf das Promise
 
   const pageQuery = `*[_type == "page" && slug.current == $slug][0] {
     title,
@@ -58,10 +56,10 @@ export default async function DynamicPage({
     }
   }`;
 
-  const pageData = await client.fetch(pageQuery, { slug: currentSlug });
+  const pageData = await client.fetch(pageQuery, { slug: slug });
 
   if (!pageData) {
-    console.error('No page data found for slug:', currentSlug); // Debugging-Log
+    console.error('No page data found for slug:', slug); // Debugging-Log
     return <div>404 - Seite nicht gefunden</div>; // Fallback für 404
   }
 
