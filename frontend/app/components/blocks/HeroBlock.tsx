@@ -29,7 +29,7 @@ export function HeroBlock({ title, subtitle, image }: HeroBlockProps) {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${urlFor(image).url()})`,
+              // backgroundImage: `url(${urlFor(image).url()})`,
               transform: `translateY(${offset * 0.5}px)`,
               backgroundPosition: `center ${offset * 0.5}px`,
               transition: 'transform 0.1s ease-out'

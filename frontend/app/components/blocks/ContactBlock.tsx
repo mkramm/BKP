@@ -44,7 +44,7 @@ export function ContactBlock({ email, phone, address, contactName }: ContactBloc
               Kontaktiere uns
             </Button>
           </div>
-          <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+          {/* <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
             <iframe
               src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${address}+(${contactName})&t=&z=16&ie=UTF8&iwloc=B&output=embed`}
               width="100%"
@@ -55,7 +55,7 @@ export function ContactBlock({ email, phone, address, contactName }: ContactBloc
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0"
             ></iframe>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
