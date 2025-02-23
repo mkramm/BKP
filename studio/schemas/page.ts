@@ -14,7 +14,7 @@ export default {
       name: 'blocks',
       type: 'array',
       title: 'Blöcke',
-      of: [{ type: 'hero' }, { type: 'article' }, { type: 'contact' }],
+      of: [{ type: 'hero' }, { type: 'article' }, { type: 'contact' }, { type: 'timeline' }],
     },
   ],
 }

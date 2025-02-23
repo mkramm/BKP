@@ -2,6 +2,7 @@ import client from '@/sanity/sanityClient'
 import { HeroBlock } from '@/app/components/blocks/HeroBlock'
 import { ArticleBlock } from '@/app/components/blocks/ArticleBlock'
 import { ContactBlock } from '@/app/components/blocks/ContactBlock'
+import { TimelineBlock, TimelineBlockProps } from '@/app/components/blocks/TimelineBlock'
 import { Image, PortableTextBlock } from 'sanity'
 
 type HeroBlockProps = {
@@ -28,7 +29,7 @@ type ContactBlockProps = {
   contactName: string;
 }
 
-type BlockProps = HeroBlockProps | ArticleBlockProps | ContactBlockProps;
+type BlockProps = HeroBlockProps | ArticleBlockProps | ContactBlockProps | TimelineBlockProps;
 
 interface PageProps {
   params: Promise<{
@@ -53,6 +54,12 @@ export default async function DynamicPage({ params }: PageProps) {
       contactName,
       headline,
       content,
+      Headline,
+      entries[] {
+        year,
+        content,
+        image
+      }
     }
   }`;
 
@@ -62,7 +69,7 @@ export default async function DynamicPage({ params }: PageProps) {
     console.error('No page data found for slug:', slug); // Debugging-Log
     return <div>404 - Seite nicht gefunden</div>; // Fallback für 404
   }
-
+  console.log('pageData', pageData);
   const renderBlock = (block: BlockProps) => {
     switch (block._type) {
       case 'hero':
@@ -71,6 +78,8 @@ export default async function DynamicPage({ params }: PageProps) {
         return <ArticleBlock key={block._key} {...(block as ArticleBlockProps)} />
       case 'contact':
         return <ContactBlock key={block._key} {...(block as ContactBlockProps)} />
+      case 'timeline':
+        return <TimelineBlock key={block._key} {...(block as TimelineBlockProps)} />
       default:
         return null
     }
