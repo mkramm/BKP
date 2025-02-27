@@ -5,12 +5,13 @@ import { urlFor } from "@/app/utils/image";
 import { Image } from "sanity";
 
 interface HeroBlockProps {
-  title: string;
+  title?: string;
   subtitle: string;
   image: Image;
+  titleImage?: Image;
 }
 
-export function HeroBlock({ title, subtitle, image }: HeroBlockProps) {
+export function HeroBlock({ title, titleImage, subtitle, image }: HeroBlockProps) {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -40,7 +41,11 @@ export function HeroBlock({ title, subtitle, image }: HeroBlockProps) {
         </>
       )}
       <div className="relative z-10 text-center text-white">
-        <h1 className="text-5xl font-bold mb-4">{title}</h1>
+      {titleImage ? (
+          <img src={urlFor(titleImage).url()} alt="Title Image" className="mx-auto mb-4" />
+        ) : (
+          <h1 className="text-5xl font-bold mb-4">{title}</h1>
+        )}
         <p className="text-xl">{subtitle}</p>
       </div>
     </section>

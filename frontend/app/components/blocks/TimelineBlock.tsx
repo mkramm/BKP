@@ -1,18 +1,17 @@
 import React from 'react';
-import TimelineEntry from './TimelineEntry';
-import { PortableTextBlock } from '@portabletext/react';
+import TimelineEntry, {TimelineEntryProps} from './TimelineEntry';
 
 export type TimelineBlockProps = {
   _type: string;
   _key: string;
-  entries: { year: number; content: PortableTextBlock[] }[];
+  entries: TimelineEntryProps[];
 };
 
 const TimelineBlock: React.FC<TimelineBlockProps> = ({ entries }) => {
   return (
     <div className="timeline">
       {entries.map((entry, index) => (
-        <TimelineEntry key={index} year={entry.year} content={entry.content} index={index} />
+        <TimelineEntry key={index} image={entry.image} year={entry.year} title={entry.title} content={entry.content} index={index} />
       ))}
     </div>
   );
