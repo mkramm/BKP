@@ -12,20 +12,20 @@ export default {
       name: 'page',
       type: 'reference',
       title: 'Seite',
-      to: [{ type: 'page' }],
+      to: [{type: 'page'}],
     },
     {
       name: 'children', // For submenus
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'sitemap' }] }],
+      of: [{type: 'reference', to: [{type: 'sitemap'}]}],
     },
     {
       name: 'icon',
       type: 'string',
       title: 'Icon',
       options: {
-        list: ['home', 'calendar', 'info', 'phone', 'music'],
+        list: ['home', 'calendar', 'info', 'phone', 'music', 'church'],
       },
     },
   ],
-};
+}
