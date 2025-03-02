@@ -5,6 +5,7 @@ import { siteTitle } from "./constants";
 import client from "@/sanity/sanityClient";
 import { Sitemap } from "./types/sitemap";
 import Navigation from "@/app/components/Navigation";
+import Footer from "@/app/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const ebGaramond = EB_Garamond({
@@ -42,14 +43,39 @@ export default async function RootLayout({
     }
   }`;
 
+  const footerQuery = `*[_type == "sitemap" && title == "footer"] {
+    title,
+    icon,
+    children[]-> {
+      title,
+      page->,
+      icon,
+      children[]-> {
+        title,
+        page->,
+        icon,
+        children[]-> {
+          title,
+          page->,
+          icon
+        }
+      }
+    }
+  }`;
+
   const sitemapData: Sitemap[] = await client.fetch(sitemapQuery);
   const rootChildren = sitemapData.find(sitemap => sitemap.title === 'root')?.children || [];
+
+  const footerData = await client.fetch(footerQuery);
 
   return (
     <html lang="en" className={`${inter.className} ${ebGaramond.variable}`}>
       <body className={inter.className}>
         <Navigation sitemapData={rootChildren} siteTitle={siteTitle} />
-        {children}
+        <div className="page-container">
+          {children}
+        </div>
+        <Footer navigation={footerData[0]?.children || []} />
       </body>
     </html>
   );
